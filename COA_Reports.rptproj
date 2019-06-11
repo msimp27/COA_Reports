@@ -53,6 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Report Include="COA_Template.rdl" />
+    <Report Include="logo.png">
+      <MimeType>image/x-png</MimeType>
+    </Report>
     <Report Include="Weekly_Billing.rdl" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Reporting Services\Microsoft.ReportingServices.MSBuilder.targets" />
