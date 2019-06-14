@@ -182,6 +182,7 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
+            <Left>0.00868in</Left>
             <Height>1.03125in</Height>
             <Width>6.63465in</Width>
             <Style>
@@ -236,6 +237,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -415,9 +417,9 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <Top>1.05903in</Top>
-            <Left>0.01736in</Left>
-            <Height>0.78125in</Height>
-            <Width>3.44792in</Width>
+            <Left>0.02604in</Left>
+            <Height>0.78124in</Height>
+            <Width>3.44793in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -425,11 +427,37 @@
               </Border>
             </Style>
           </Tablix>
+          <Textbox Name="Textbox9">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox3</rd:DefaultName>
+            <Top>2.21292in</Top>
+            <Height>0.3125in</Height>
+            <Width>6.65201in</Width>
+            <ZIndex>2</ZIndex>
+            <ToolTip>COA Report Footer</ToolTip>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>#b01886</BackgroundColor>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>2.00917in</Height>
+        <Height>2.52542in</Height>
         <Style />
       </Body>
-      <Width>6.63465in</Width>
+      <Width>6.65201in</Width>
       <Page>
         <LeftMargin>1in</LeftMargin>
         <RightMargin>1in</RightMargin>
