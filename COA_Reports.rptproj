@@ -49,6 +49,9 @@
     <Reports>@(Report)</Reports>
   </PropertyGroup>
   <ItemGroup>
+    <DataSet Include="DataSet_Region.rsd" />
+  </ItemGroup>
+  <ItemGroup>
     <DataSource Include="DS_Procare.rds" />
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +60,9 @@
       <MimeType>image/x-png</MimeType>
     </Report>
     <Report Include="Weekly_Billing.rdl" />
+    <Report Include="worksheet_weekly_billing.sql">
+      <MimeType>application/octet-stream</MimeType>
+    </Report>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Reporting Services\Microsoft.ReportingServices.MSBuilder.targets" />
 </Project>
