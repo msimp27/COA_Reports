@@ -74,6 +74,9 @@ where
 
 -- exec "RPT_AG_CORP_TotalChargeCreditSummary";1 {ts '2019-05-19 00:00:00'}, {ts '2019-05-25 23:59:00'}, 1
 
+-- exec "RPT_AG_CORP_TotalChargeCreditSummary";1 {ts '2019-04-01 00:00:00'}, {ts '2019-04-05 23:59:00'}, 1
+
+
 -- exec AR_Classroom_GetAllInfoBySchoolID @SchoolID=52
 
 -- exec AR_Element_RevenueTotals @SchoolId=52
