@@ -523,6 +523,8 @@
                                   <Value>=Sum(Fields!Total.Value)</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
+                                    <Format>'$'#,0.00;('$'#,0.00)</Format>
+                                    <Color>= iif(Sum(Fields!Total.Value) &gt; 0, "Black","Red")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -539,6 +541,7 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -659,6 +662,8 @@
                                   <Value>=Sum(Fields!Total.Value)</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
+                                    <Format>'$'#,0.00;('$'#,0.00)</Format>
+                                    <Color>= iif(Sum(Fields!Total.Value) &gt; 0, "Black","Red")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -676,6 +681,7 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -929,7 +935,8 @@
                                   <Value>=sum(Fields!Total.Value)</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
-                                    <Color>White</Color>
+                                    <Format>'$'#,0.00;('$'#,0.00)</Format>
+                                    <Color>= iif(sum( Fields!Total.Value), "White","Red")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -947,6 +954,7 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -1200,6 +1208,7 @@
                                   <Value>=Sum(Fields!Total.Value, "DataSet_PreviousWeekCreditSummary")</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
+                                    <Format>'$'#,0.00;('$'#,0.00)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1217,6 +1226,7 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
