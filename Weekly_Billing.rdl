@@ -722,7 +722,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1775,6 +1774,7 @@
                     <TextRun>
                       <Value>= "Page " + Globals!OverallPageNumber.ToString + " of " + Globals!OverallTotalPages.ToString + "  "</Value>
                       <Style>
+                        <FontFamily>calibri</FontFamily>
                         <Color>White</Color>
                       </Style>
                     </TextRun>
