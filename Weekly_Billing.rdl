@@ -89,6 +89,15 @@
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
+      <Filters>
+        <Filter>
+          <FilterExpression>=Fields!TypeDescription.Value</FilterExpression>
+          <Operator>Equal</Operator>
+          <FilterValues>
+            <FilterValue>Tuition Charges</FilterValue>
+          </FilterValues>
+        </Filter>
+      </Filters>
     </DataSet>
     <DataSet Name="DataSet_Region">
       <SharedDataSet>
@@ -244,6 +253,15 @@
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
+      <Filters>
+        <Filter>
+          <FilterExpression>=Fields!TypeDescription.Value</FilterExpression>
+          <Operator>Equal</Operator>
+          <FilterValues>
+            <FilterValue>Tuition Charges</FilterValue>
+          </FilterValues>
+        </Filter>
+      </Filters>
     </DataSet>
   </DataSets>
   <ReportSections>
@@ -521,7 +539,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!Total.Value)</Value>
+                                  <Value>=sum(Fields!Total.Value)</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                     <Format>'$'#,0.00;('$'#,0.00)</Format>
@@ -660,7 +678,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!Total.Value)</Value>
+                                  <Value>=sum(Fields!Total.Value)</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                     <Format>'$'#,0.00;('$'#,0.00)</Format>
@@ -1206,7 +1224,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!Total.Value, "DataSet_PreviousWeekCreditSummary")</Value>
+                                  <Value>=Sum(Fields!Total.Value,"DataSet_PreviousWeekCreditSummary")</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                     <Format>'$'#,0.00;('$'#,0.00)</Format>
@@ -1772,7 +1790,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>= "Page " + Globals!OverallPageNumber.ToString + " of " + Globals!OverallTotalPages.ToString + "  "</Value>
+                      <Value>= "Page " + Globals!OverallPageNumber.ToString + " of " + Globals!OverallTotalPages.ToString + "  " + vbcrlf + "Developed By Graves Intelligence "</Value>
                       <Style>
                         <FontFamily>calibri</FontFamily>
                         <Color>White</Color>
@@ -1780,7 +1798,7 @@
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Right</TextAlign>
+                    <TextAlign>Center</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>

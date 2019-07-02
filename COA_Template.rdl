@@ -292,7 +292,6 @@
             <FixedColumnHeaders>true</FixedColumnHeaders>
             <KeepTogether>true</KeepTogether>
             <DataSetName>DataSet1</DataSetName>
-            <Left>0in</Left>
             <Height>0.66319in</Height>
             <Width>3.60339in</Width>
             <ToolTip>COA report template</ToolTip>
@@ -306,7 +305,7 @@
         <Height>1.07166in</Height>
         <Style />
       </Body>
-      <Width>7.07167in</Width>
+      <Width>8.16244in</Width>
       <Page>
         <PageHeader>
           <Height>1.20833in</Height>
@@ -334,7 +333,7 @@
                 </Paragraph>
               </Paragraphs>
               <Top>0.3368in</Top>
-              <Left>3.12771in</Left>
+              <Left>3.6731in</Left>
               <Height>0.29167in</Height>
               <Width>3.17708in</Width>
               <ToolTip>User Information</ToolTip>
@@ -367,7 +366,7 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Left>3.12771in</Left>
+              <Left>3.6731in</Left>
               <Height>0.37027in</Height>
               <Width>1.51042in</Width>
               <ZIndex>1</ZIndex>
@@ -385,6 +384,7 @@
               <Source>External</Source>
               <Value>logo.png</Value>
               <Sizing>FitProportional</Sizing>
+              <Left>0.54539in</Left>
               <Height>1.03125in</Height>
               <Width>3.08604in</Width>
               <ZIndex>2</ZIndex>
@@ -403,40 +403,38 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.26389in</Height>
+          <Height>0.40626in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
-            <Textbox Name="Textbox1">
-              <CanGrow>true</CanGrow>
+            <Textbox Name="FooterBorder">
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>= "Page " + Globals!OverallPageNumber.ToString + " of " + Globals!OverallTotalPages.ToString + "  "</Value>
+                      <Value>= "Page " + Globals!OverallPageNumber.ToString + " of " + Globals!OverallTotalPages.ToString + "  " + vbcrlf + "Developed By Graves Intelligence "</Value>
                       <Style>
                         <FontFamily>calibri</FontFamily>
                         <Color>White</Color>
                       </Style>
                     </TextRun>
                   </TextRuns>
-                  <Style />
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
                 </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.01389in</Top>
-              <Left>6.07167in</Left>
-              <Height>0.25in</Height>
-              <Width>1in</Width>
+              <Top>0.04688in</Top>
+              <Height>0.3125in</Height>
+              <Width>8.16244in</Width>
+              <ToolTip>COA Report Footer</ToolTip>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
+                <BackgroundColor>#b01886</BackgroundColor>
+                <VerticalAlign>Middle</VerticalAlign>
               </Style>
             </Textbox>
           </ReportItems>
