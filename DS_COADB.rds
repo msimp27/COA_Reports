@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="DS_COADB">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=192.168.75.52;Initial Catalog=coadb</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>bf0ad07e-5dd0-420f-a565-bbc21b724a6b</DataSourceID>
+</RptDataSource>

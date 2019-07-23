@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="DataSource_Unity">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=server2016;Initial Catalog=Unity</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>f8254191-eedb-45ec-9e85-db6b8c0c9531</DataSourceID>
+</RptDataSource>

@@ -41,7 +41,12 @@ where
 	TextData like 'exec %rpt%'
 
 
--- exec "RPT_AG_CORP_TotalChargeCreditSummary";1 {ts '2019-05-19 00:00:00'}, {ts '2019-05-25 23:59:00'}, 1
+select top 30 * from procare.[dbo].[AR_AccountLedger]
+
+
+-- exec "RPT_AG_CORP_TotalChargeCreditSummary";1 {ts '2019-02-19 00:00:00'}, {ts '2019-05-25 23:59:00'}, 1
+
+-- exec procare.dbo.RPT_AG_CORP_TotalChargeCreditSummary '2019-02-04 00:00:00', '2019-02-08 23:59:00', 1
 
 -- exec AR_Classroom_GetAllInfoBySchoolID @SchoolID=52
 

@@ -3,7 +3,6 @@
   <ConnectionProperties>
     <Extension>SQL</Extension>
     <ConnectString>Data Source=SERVER2016;Initial Catalog=Procare</ConnectString>
-    <IntegratedSecurity>true</IntegratedSecurity>
   </ConnectionProperties>
   <DataSourceID>f6112f88-22f5-477c-9cc1-bd541d6387d0</DataSourceID>
 </RptDataSource>

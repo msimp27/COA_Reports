@@ -8,9 +8,9 @@
     <OverwriteDataSources>False</OverwriteDataSources>
     <TargetServerVersion>SSRS2008R2</TargetServerVersion>
     <Platform>Win32</Platform>
-    <TargetReportFolder>COA_Reports</TargetReportFolder>
+    <TargetReportFolder />
     <TargetDatasetFolder>Datasets</TargetDatasetFolder>
-    <TargetDatasourceFolder>Data Sources</TargetDatasourceFolder>
+    <TargetDatasourceFolder>DataSources</TargetDatasourceFolder>
     <TargetReportPartFolder>Report Parts</TargetReportPartFolder>
     <TargetServerURL>http://localhost/reportserver</TargetServerURL>
   </PropertyGroup>
@@ -49,13 +49,24 @@
     <Reports>@(Report)</Reports>
   </PropertyGroup>
   <ItemGroup>
-    <DataSet Include="DataSet_Region.rsd" />
+    <DataSet Include="DataSet_Closing_Percent.rsd" />
+    <DataSet Include="DataSet_COAdb_SchoolStatus.rsd" />
+    <DataSet Include="DataSet_Exe_Director.rsd" />
+    <DataSet Include="DataSet_KeyBenchmarks.rsd" />
+    <DataSet Include="DataSet_TotalChargeCreditSummary.rsd" />
   </ItemGroup>
   <ItemGroup>
+    <DataSource Include="DS_COADB.rds" />
     <DataSource Include="DS_Procare.rds" />
+    <DataSource Include="DS_Unity.rds" />
   </ItemGroup>
   <ItemGroup>
-    <Report Include="COA_Template.rdl" />
+    <Report Include="Closing_Percentage.rdl" />
+    <Report Include="EnrollmentBudgetBeaterGSC.rdl" />
+    <Report Include="EnrollmentBudgetBeaterGSC_Old.rdl" />
+    <Report Include="GoldStar.jpg">
+      <MimeType>image/jpeg</MimeType>
+    </Report>
     <Report Include="logo.png">
       <MimeType>image/x-png</MimeType>
     </Report>

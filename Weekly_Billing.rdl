@@ -10,99 +10,12 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DataSet_TotalChargeCreditSummary">
+    <DataSet Name="DataSet_Region">
       <Query>
         <DataSourceName>DSource_Procare</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@StartDate">
-            <Value>=Parameters!StartDate.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@EndDate">
-            <Value>=Parameters!EndDate.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@ProcareUserID">
-            <Value>=Parameters!ProcareUserID.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>RPT_AG_CORP_TotalChargeCreditSummary</CommandText>
+        <CommandText>procare.[dbo].[G_Regions_GetInfoDetail]</CommandText>
       </Query>
-      <Fields>
-        <Field Name="CompanyName">
-          <DataField>CompanyName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="CompanySortOrder">
-          <DataField>CompanySortOrder</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="RegionID">
-          <DataField>RegionID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="RegionName">
-          <DataField>RegionName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="RegionSortOrder">
-          <DataField>RegionSortOrder</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="SchoolID">
-          <DataField>SchoolID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="SchoolName">
-          <DataField>SchoolName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="SchoolSortOrder">
-          <DataField>SchoolSortOrder</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="TypeDescriptionID">
-          <DataField>TypeDescriptionID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="TypeDescription">
-          <DataField>TypeDescription</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="SortOrder">
-          <DataField>SortOrder</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="DescriptionID">
-          <DataField>DescriptionID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="Description">
-          <DataField>Description</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Items">
-          <DataField>Items</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="Total">
-          <DataField>Total</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-      </Fields>
-      <Filters>
-        <Filter>
-          <FilterExpression>=Fields!TypeDescription.Value</FilterExpression>
-          <Operator>Equal</Operator>
-          <FilterValues>
-            <FilterValue>Tuition Charges</FilterValue>
-          </FilterValues>
-        </Filter>
-      </Filters>
-    </DataSet>
-    <DataSet Name="DataSet_Region">
-      <SharedDataSet>
-        <SharedDataSetReference>DataSet_Region</SharedDataSetReference>
-      </SharedDataSet>
       <Fields>
         <Field Name="RegionID">
           <DataField>RegionID</DataField>
@@ -174,22 +87,23 @@
         </Field>
       </Fields>
     </DataSet>
-    <DataSet Name="DataSet_PreviousWeekCreditSummary">
+    <DataSet Name="Dataset_CurrentWeekBilling">
       <Query>
         <DataSourceName>DSource_Procare</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@StartDate">
-            <Value>= dateadd(DateInterval.Day,-7,Parameters!StartDate.Value)</Value>
+            <Value>=Parameters!StartDate.Value</Value>
           </QueryParameter>
           <QueryParameter Name="@EndDate">
-            <Value>=DateAdd(DateInterval.Day,-7,Parameters!EndDate.Value)</Value>
+            <Value>=Parameters!EndDate.Value</Value>
           </QueryParameter>
           <QueryParameter Name="@ProcareUserID">
             <Value>=Parameters!ProcareUserID.Value</Value>
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>RPT_AG_CORP_TotalChargeCreditSummary</CommandText>
+        <CommandText>dbo.RPT_AG_CORP_TotalChargeCreditSummary</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
         <Field Name="CompanyName">
@@ -256,9 +170,102 @@
       <Filters>
         <Filter>
           <FilterExpression>=Fields!TypeDescription.Value</FilterExpression>
-          <Operator>Equal</Operator>
+          <Operator>In</Operator>
           <FilterValues>
             <FilterValue>Tuition Charges</FilterValue>
+            <FilterValue>Other Charges</FilterValue>
+            <FilterValue>Credits</FilterValue>
+          </FilterValues>
+        </Filter>
+      </Filters>
+    </DataSet>
+    <DataSet Name="DataSet_PreviousWeekBilling">
+      <Query>
+        <DataSourceName>DSource_Procare</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@StartDate">
+            <Value>= dateadd(DateInterval.Day,-7,Parameters!StartDate.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EndDate">
+            <Value>= dateadd(DateInterval.Day,-7,Parameters!EndDate.Value)</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ProcareUserID">
+            <Value>=Parameters!ProcareUserID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>dbo.RPT_AG_CORP_TotalChargeCreditSummary</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CompanySortOrder">
+          <DataField>CompanySortOrder</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="RegionID">
+          <DataField>RegionID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="RegionName">
+          <DataField>RegionName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RegionSortOrder">
+          <DataField>RegionSortOrder</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="SchoolID">
+          <DataField>SchoolID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="SchoolName">
+          <DataField>SchoolName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SchoolSortOrder">
+          <DataField>SchoolSortOrder</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TypeDescriptionID">
+          <DataField>TypeDescriptionID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TypeDescription">
+          <DataField>TypeDescription</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SortOrder">
+          <DataField>SortOrder</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DescriptionID">
+          <DataField>DescriptionID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Description">
+          <DataField>Description</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Items">
+          <DataField>Items</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Total">
+          <DataField>Total</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+      <Filters>
+        <Filter>
+          <FilterExpression>=Fields!TypeDescription.Value</FilterExpression>
+          <Operator>In</Operator>
+          <FilterValues>
+            <FilterValue>Tuition Charges</FilterValue>
+            <FilterValue>Other Charges</FilterValue>
+            <FilterValue>Credits</FilterValue>
           </FilterValues>
         </Filter>
       </Filters>
@@ -305,7 +312,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox62</rd:DefaultName>
@@ -340,7 +349,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox65</rd:DefaultName>
@@ -375,7 +386,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox51</rd:DefaultName>
@@ -410,7 +423,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox53</rd:DefaultName>
@@ -449,7 +464,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox63</rd:DefaultName>
@@ -481,7 +498,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox66</rd:DefaultName>
@@ -513,7 +532,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox60</rd:DefaultName>
@@ -547,7 +568,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Total</rd:DefaultName>
@@ -618,7 +641,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox76</rd:DefaultName>
@@ -686,7 +711,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Total1</rd:DefaultName>
@@ -954,6 +981,7 @@
                                   <Value>=sum(Fields!Total.Value)</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0.00;('$'#,0.00)</Format>
                                     <Color>= iif(sum( Fields!Total.Value), "White","Red")</Color>
                                   </Style>
@@ -1224,9 +1252,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!Total.Value,"DataSet_PreviousWeekCreditSummary")</Value>
+                                  <Value>=Sum(Fields!Total.Value,"DataSet_PreviousWeekBilling")</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0.00;('$'#,0.00)</Format>
                                   </Style>
                                 </TextRun>
@@ -1416,7 +1445,9 @@
                                 </Style>
                               </TextRun>
                             </TextRuns>
-                            <Style />
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
                           </Paragraph>
                         </Paragraphs>
                         <rd:DefaultName>Textbox72</rd:DefaultName>
@@ -1529,6 +1560,7 @@
                                 <Value>Grand Total</Value>
                                 <Style>
                                   <FontFamily>calibri</FontFamily>
+                                  <FontWeight>Bold</FontWeight>
                                   <Color>White</Color>
                                 </Style>
                               </TextRun>
@@ -1664,11 +1696,9 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <RepeatColumnHeaders>true</RepeatColumnHeaders>
-            <FixedColumnHeaders>true</FixedColumnHeaders>
             <KeepTogether>true</KeepTogether>
             <NoRowsMessage>No Data Found</NoRowsMessage>
-            <DataSetName>DataSet_TotalChargeCreditSummary</DataSetName>
+            <DataSetName>Dataset_CurrentWeekBilling</DataSetName>
             <Height>2.125in</Height>
             <Width>8.16244in</Width>
             <Style>
@@ -1681,7 +1711,7 @@
         <Height>2.125in</Height>
         <Style />
       </Body>
-      <Width>8.16244in</Width>
+      <Width>8.21452in</Width>
       <Page>
         <PageHeader>
           <Height>1.22223in</Height>
@@ -1743,7 +1773,7 @@
                   <TextRuns>
                     <TextRun>
                       <Value>= " Run Date: " + Globals!ExecutionTime +   " , Run By: " + mid(User!UserID,instr(User!UserID,"\")+1)
-+ VbCrLf + "Parameters: StartDate = " + Parameters!StartDate.Value + ", EndDate = " + Parameters!EndDate.Value</Value>
++ VbCrLf + "Parameters: StartDate - " + Parameters!StartDate.Value + ", EndDate - " + Parameters!EndDate.Value</Value>
                       <Style>
                         <FontFamily>Calibri</FontFamily>
                         <FontSize>8pt</FontSize>
@@ -1780,7 +1810,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.32639in</Height>
+          <Height>0.46181in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1790,7 +1820,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>= "Page " + Globals!OverallPageNumber.ToString + " of " + Globals!OverallTotalPages.ToString + "  " + vbcrlf + "Developed By Graves Intelligence "</Value>
+                      <Value>= "Page " + Globals!OverallPageNumber.ToString + " of " + Globals!OverallTotalPages.ToString + "  " + vbcrlf + "Developed by Graves Intelligence "</Value>
                       <Style>
                         <FontFamily>calibri</FontFamily>
                         <Color>White</Color>
@@ -1802,9 +1832,16 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
+              <ActionInfo>
+                <Actions>
+                  <Action>
+                    <Hyperlink>https://www.gravesi.com/</Hyperlink>
+                  </Action>
+                </Actions>
+              </ActionInfo>
               <Top>0.01389in</Top>
-              <Height>0.3125in</Height>
-              <Width>8.16244in</Width>
+              <Height>0.44792in</Height>
+              <Width>8.21452in</Width>
               <ToolTip>COA Report Footer</ToolTip>
               <Style>
                 <Border>
@@ -1833,10 +1870,12 @@
     <ReportParameter Name="StartDate">
       <DataType>DateTime</DataType>
       <Prompt>Start Date</Prompt>
+      <UsedInQuery>True</UsedInQuery>
     </ReportParameter>
     <ReportParameter Name="EndDate">
       <DataType>DateTime</DataType>
       <Prompt>End Date</Prompt>
+      <UsedInQuery>True</UsedInQuery>
     </ReportParameter>
     <ReportParameter Name="ProcareUserID">
       <DataType>Integer</DataType>
