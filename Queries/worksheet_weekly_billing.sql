@@ -7,34 +7,8 @@
 -- Procare v10 Center Management System
 
 
--- select * from [dbo].[Weelky_Billing_Report_Procare] where ApplicationName = 'Procare v10 Center Management System'
+select * from [dbo].[Weelky_Billing_Report_Procare] where ApplicationName = 'Procare v10 Center Management System'
 
-
-
--- select top 3 * from procare.[dbo].[AP_Vendor]
-
-
--- select top 3 * from procare.[dbo].[G_Department]
-
--- select top 30 * from procare.[dbo].[G_Regions]
-
-select 
-	top 30 
-	-- * 
-	RegionID
-	,Code
-	,Director
-	,RegionName
-from procare.[dbo].[G_Regions]
-
-
-
-exec procare.[dbo].[G_Regions_GetInfoDetail]
-
-
-
-
-/*
 
 select
 	--top 3
@@ -57,10 +31,7 @@ where
 	and StartTime < '2019-05-22 13:57:00.020'
 	--order by StartTime
 
-*/
 
-
-/*
 
 select
 	--top 3
@@ -69,13 +40,13 @@ from [dbo].[Weelky_Billing_Report_Procare]
 where 
 	TextData like 'exec %rpt%'
 
-*/
+
+select top 30 * from procare.[dbo].[AR_AccountLedger]
 
 
--- exec "RPT_AG_CORP_TotalChargeCreditSummary";1 {ts '2019-05-19 00:00:00'}, {ts '2019-05-25 23:59:00'}, 1
+-- exec "RPT_AG_CORP_TotalChargeCreditSummary";1 {ts '2019-02-19 00:00:00'}, {ts '2019-05-25 23:59:00'}, 1
 
--- exec "RPT_AG_CORP_TotalChargeCreditSummary";1 {ts '2019-04-01 00:00:00'}, {ts '2019-04-05 23:59:00'}, 1
-
+-- exec procare.dbo.RPT_AG_CORP_TotalChargeCreditSummary '2019-02-04 00:00:00', '2019-02-08 23:59:00', 1
 
 -- exec AR_Classroom_GetAllInfoBySchoolID @SchoolID=52
 
