@@ -49,31 +49,30 @@
     <Reports>@(Report)</Reports>
   </PropertyGroup>
   <ItemGroup>
-    <DataSet Include="DataSet_Closing_Percent.rsd" />
-    <DataSet Include="DataSet_COAdb_SchoolStatus.rsd" />
-    <DataSet Include="DataSet_Exe_Director.rsd" />
-    <DataSet Include="DataSet_KeyBenchmarks.rsd" />
-    <DataSet Include="DataSet_TotalChargeCreditSummary.rsd" />
+    <DataSet Include="DataSet_ChildCare_SchoolName_Default.rsd" />
+    <DataSet Include="DataSet_ChildCare_SchoolName_Range.rsd" />
+    <DataSet Include="DataSet_Date_Range.rsd" />
+    <DataSet Include="DataSet_Date_Selected.rsd" />
+    <DataSet Include="DataSet_Executive_Directors.rsd" />
+    <DataSet Include="DataSet_Unity_Campus_Default.rsd" />
+    <DataSet Include="DataSet_Unity_Campus_Range.rsd" />
+    <DataSet Include="DataSet_Unity_State_Default.rsd" />
+    <DataSet Include="DataSet_Unity_State_Range.rsd" />
   </ItemGroup>
   <ItemGroup>
+    <DataSource Include="DS_ChildCare.rds" />
     <DataSource Include="DS_COADB.rds" />
     <DataSource Include="DS_Procare.rds" />
     <DataSource Include="DS_Unity.rds" />
   </ItemGroup>
   <ItemGroup>
-    <Report Include="Closing_Percentage.rdl" />
-    <Report Include="EnrollmentBudgetBeaterGSC.rdl" />
-    <Report Include="EnrollmentBudgetBeaterGSC_Old.rdl" />
-    <Report Include="GoldStar.jpg">
-      <MimeType>image/jpeg</MimeType>
-    </Report>
-    <Report Include="logo.png">
-      <MimeType>image/x-png</MimeType>
-    </Report>
-    <Report Include="Weekly_Billing.rdl" />
-    <Report Include="worksheet_weekly_billing.sql">
-      <MimeType>application/octet-stream</MimeType>
-    </Report>
+    <Report Include="0.0_TEMPLATE_COA_Standard Report.rdl" />
+    <Report Include="Classroom Composition_0.1.rdl" />
+    <Report Include="Closing_Percentage_7.2.rdl" />
+    <Report Include="COA_Center Visit Checklist Summary 0.1.rdl" />
+    <Report Include="Enrollment Budget Beater GSC_2.1.rdl" />
+    <Report Include="Unidentified Leads_1.1.rdl" />
+    <Report Include="Weekly_Billing_2.1.rdl" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Reporting Services\Microsoft.ReportingServices.MSBuilder.targets" />
 </Project>
