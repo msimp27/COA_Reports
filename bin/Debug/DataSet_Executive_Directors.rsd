@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>DS_ChildCare</DataSourceReference>
+      <CommandText>SELECT ExeDirectorName = CONCAT(p.FirstName, ' ', p.LastName), s.CampusName, s.CenterCode,s.State, s.SchoolName, c.SchoolID, ps.SchoolID AS ProSchoolID, ps.SchoolName AS ProSchoolName, ps.RegionID, ps.Region
+FROM  [Unity].[dbo].[UDBS_Schools] s  
+LEFT OUTER JOIN [Procare].[dbo].[G_ProcareUser] pu ON s.EdSpecialistProUserId = pu.ProCareUserID
+INNER JOIN [Procare].[dbo].[G_Person] p ON pu.PersonID = p.PersonID
+INNER JOIN [ChildCare].[dbo].[Locations] c ON s.SchoolID = c.UnitySchoolID
+INNER JOIN [Procare].[dbo].[G_Schools] ps ON ps.SchoolID = s.ProcareSchoolId</CommandText>
+      <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+    </Query>
+    <Fields>
+      <Field Name="ExeDirectorName">
+        <DataField>ExeDirectorName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CampusName">
+        <DataField>CampusName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CenterCode">
+        <DataField>CenterCode</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="State">
+        <DataField>State</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="SchoolName">
+        <DataField>SchoolName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="SchoolID">
+        <DataField>SchoolID</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="ProSchoolID">
+        <DataField>ProSchoolID</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="ProSchoolName">
+        <DataField>ProSchoolName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="RegionID">
+        <DataField>RegionID</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Region">
+        <DataField>Region</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

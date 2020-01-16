@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="DS_ChildCare">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=SERVER2016;Initial Catalog=ChildCare</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>b73243e1-a400-4cc1-91b8-9e0f6b837e69</DataSourceID>
+</RptDataSource>
