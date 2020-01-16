@@ -333,6 +333,13 @@
         </Field>
       </Fields>
     </DataSet>
+    <DataSet Name="DataSet_Enrollment">
+      <Query>
+        <DataSourceName>DataSource_Unity</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>GI_SP_RPT_ENROLLMENT_BUDGET_BEATER_SAGE</CommandText>
+      </Query>
+    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
