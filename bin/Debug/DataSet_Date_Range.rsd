@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>DS_Unity</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@ORG">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int32</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandText>--CORP, CAMPUS, SCHOOLS, STATES
+IF @ORG IN (1,2,3,4)
+
+SELECT * FROM (
+
+SELECT 'CURRENT MONTH' AS DATERANGESET, 
+CAST(DATEADD(mm,DATEDIFF(mm,0,GETDATE()),0) AS DATETIME) AS DATEVALUE_START, 
+'FirstDayOfThisMonth' AS DATESELECT_START, 
+CAST(DATEADD(ms,- 3,DATEADD(mm,0,DATEADD(mm,DATEDIFF(mm,0,GETDATE())+1,0))) AS DATETIME) AS DATEVALUE_END, 
+'LastDayOfThisMonth' AS DATESELECT_END, 1 AS 'ORDERNUM'
+UNION
+SELECT 'LAST MONTH' AS DATERANGESET, 
+CAST(DATEADD(mm,-1,DATEADD(mm,DATEDIFF(mm,0,GETDATE()),0)) AS DATETIME) AS DATEVALUE_START,
+'FirstDayOfLastMonth' AS DATESELECT_START,
+CAST(DATEADD(ms,-3,DATEADD(mm,0,DATEADD(mm,DATEDIFF(mm,0,GETDATE()),0))) AS DATETIME) AS DATEVALUE_END, 
+'LastDayOfLastMonth' AS DATESELECT_END, 2 AS 'ORDERNUM'
+UNION
+SELECT '2 WKS &amp; 1 MTH TRAILING' AS DATERANGESET,
+CAST(DATEADD(mm,-1,DATEADD(wk,-2,DATEDIFF(d,0,GETDATE()))) AS DATETIME) AS DATEVALUE_START,
+'FirstDayOfLastMonth_Trail2Weeks' AS DATESELECT_START,
+CAST(DATEADD(wk,-2,DATEDIFF(d,0,GETDATE())) AS DATETIME)AS DATEVALUE_END, 
+'LastDayOfLastMonth_Trail2Weeks'AS DATESELECT_END, 3 AS 'ORDERNUM'
+UNION
+SELECT 'WEEK TO DATE' AS DATERANGESET, 
+CAST(DATEADD(wk,DATEDIFF(wk,0,GETDATE()),0) AS DATETIME) AS DATEVALUE_START,
+'WeekBegin_WTD_Monday' AS DATESELECT_START,
+CAST(DATEADD(mm,0,DATEDIFF(d,0,GETDATE()) + 1) - .00000007 AS DATETIME) AS DATEVALUE_END, 
+'CurrentDate_WTD' AS DATESELECT_END, 4 AS 'ORDERNUM'
+UNION
+SELECT 'MONTH TO DATE' AS DATERANGESET, 
+CAST(DATEADD(mm,DATEDIFF(mm,0,GETDATE()),0) AS DATETIME) AS DATEVALUE_START,
+'MonthBegin_MTD' AS DATESELECT_START,
+CAST(DATEADD(mm,0,DATEDIFF(d,0,GETDATE()) + 1) - .00000007 AS DATETIME) AS DATEVALUE_END, 
+'CurrentDate_MTD'AS DATESELECT_END, 5 AS 'ORDERNUM'
+
+) AS DATERANGE ORDER BY ORDERNUM</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="DATERANGESET">
+        <DataField>DATERANGESET</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="DATEVALUE_START">
+        <DataField>DATEVALUE_START</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="DATESELECT_START">
+        <DataField>DATESELECT_START</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="DATEVALUE_END">
+        <DataField>DATEVALUE_END</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="DATESELECT_END">
+        <DataField>DATESELECT_END</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="ORDERNUM">
+        <DataField>ORDERNUM</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>
