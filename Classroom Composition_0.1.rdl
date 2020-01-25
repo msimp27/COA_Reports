@@ -263,119 +263,50 @@ from coadb.[dbo].[_ACBRegistration]</CommandText>
       <Query>
         <DataSourceName>DataSource_COADB</DataSourceName>
         <QueryParameters>
-          <QueryParameter Name="@AsOfDate">
-            <Value>=Parameters!AsOfDate.Value</Value>
+          <QueryParameter Name="@BeginDate">
+            <Value>=Parameters!BeginDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EndDate">
+            <Value>=Parameters!EndDate.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>Select		
-	c.ID
-	,c.CenterCode
-	,c.CenterName
-	,c.CenterState	
-	,c.DistrictMgrEmail
-	,c.FrontDeskEmail
-	,c.CenterEmail
-	,c.DirectorName
-	,c.CenterPhoneNumber
-	,c.NotOpen
-	,c.BCCEmail
-	,cscc.TARGETTEACHERCHILDHRSPERC
-	,cscc.AVGDAILYTUITIONPERCHILD
-	,cscc.AVGDAILYTUITIONPERCHILDPRICEMATCH
-	,cscc.AVGHOURLYRATE
-	,csdc.EnrollmentNumber
-	,csdc.DateCode
-	,csae.TimeCardSummaryLessMgmtHrs
-	,csae.totalchildhours
-	,csae.TotalHrsPerCountSheet
-	,csae.PayrollPercentageStandard
-	,(
-		Select	SUM(kidsval)
-		From	CountSheetChart WITH (NOLOCK)
-		Where	CenterCode = c.CenterCode
-		AND		DateCode = csdc.DateCode
-		AND		TimeCode = 1300
-	) AS kidsval
+        <CommandText>
+select 
+	id
+	,CenterCode
+	,DateCode
+	,TotalTeacherHours
+	,TotalChildHours
+	,AAClassHrs
+	,TimeCardSummaryLessMgmtHrs
+	,TotalHrsTimeCardLessMgmt
+	,TotalHrsPerCountSheet
 
-FROM		Centers c WITH (NOLOCK)
-
-LEFT JOIN	CountSheetCenterConfig cscc WITH (NOLOCK)--one-to-one
-ON			c.CenterCode = cscc.CenterCode
-
-LEFT JOIN	CountSheetDailyConfig csdc WITH (NOLOCK)--many-to-one
-ON			csdc.CenterCode = c.centerCode
-AND			csdc.DateCode IN (@AsOfDate)		  
-
-LEFT JOIN	CountSheetAnalystEOD csae WITH (NOLOCK)--many-to-one
-ON			csdc.CenterCode = csae.CenterCode
-AND			csae.DateCode = csdc.DateCode
-WHERE		[Status] = 'Open'
-AND			c.CenterCode &lt;&gt; 'acme'</CommandText>
+from CountSheetAnalystEOD 
+where 
+	CenterCode = 'appleton' 
+	and DateCode between @BeginDate and @EndDate</CommandText>
       </Query>
       <Fields>
         <Field Name="ID">
-          <DataField>ID</DataField>
+          <DataField>id</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="CenterCode">
           <DataField>CenterCode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="CenterName">
-          <DataField>CenterName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="CenterState">
-          <DataField>CenterState</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="DistrictMgrEmail">
-          <DataField>DistrictMgrEmail</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="FrontDeskEmail">
-          <DataField>FrontDeskEmail</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="CenterEmail">
-          <DataField>CenterEmail</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="DirectorName">
-          <DataField>DirectorName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="CenterPhoneNumber">
-          <DataField>CenterPhoneNumber</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="NotOpen">
-          <DataField>NotOpen</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="BCCEmail">
-          <DataField>BCCEmail</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="TARGETTEACHERCHILDHRSPERC">
-          <DataField>TARGETTEACHERCHILDHRSPERC</DataField>
+        <Field Name="TotalTeacherHours">
+          <DataField>TotalTeacherHours</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="AVGDAILYTUITIONPERCHILD">
-          <DataField>AVGDAILYTUITIONPERCHILD</DataField>
+        <Field Name="AAClassHrs">
+          <DataField>AAClassHrs</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="AVGDAILYTUITIONPERCHILDPRICEMATCH">
-          <DataField>AVGDAILYTUITIONPERCHILDPRICEMATCH</DataField>
+        <Field Name="TotalHrsTimeCardLessMgmt">
+          <DataField>TotalHrsTimeCardLessMgmt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="AVGHOURLYRATE">
-          <DataField>AVGHOURLYRATE</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="EnrollmentNumber">
-          <DataField>EnrollmentNumber</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="DateCode">
           <DataField>DateCode</DataField>
@@ -386,20 +317,12 @@ AND			c.CenterCode &lt;&gt; 'acme'</CommandText>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="totalchildhours">
-          <DataField>totalchildhours</DataField>
+          <DataField>TotalChildHours</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="TotalHrsPerCountSheet">
           <DataField>TotalHrsPerCountSheet</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="PayrollPercentageStandard">
-          <DataField>PayrollPercentageStandard</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="kidsval">
-          <DataField>kidsval</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
