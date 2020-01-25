@@ -21,13 +21,16 @@
   <DataSets>
     <DataSet Name="DataSet_ACB_Registration">
       <Query>
-        <DataSourceName>DataSource_Unity</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@EntryDate">
-            <Value>=Parameters!EntryDate.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>select * from unity.acb.Registration where EntryDate = @EntryDate</CommandText>
+        <DataSourceName>DataSource_COADB</DataSourceName>
+        <CommandText>
+select 
+	ID
+	,EntryDate
+	,[Status] 
+	,BillingActive
+	,CenterCode
+	,Child1Classroom	
+from coadb.[dbo].[_ACBRegistration]</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
@@ -43,165 +46,17 @@
           <DataField>Status</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DateTrialStart">
-          <DataField>DateTrialStart</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="DateActiveStart">
-          <DataField>DateActiveStart</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="DateInactiveStart">
-          <DataField>DateInactiveStart</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
         <Field Name="BillingActive">
           <DataField>BillingActive</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="CancelRequestPending">
-          <DataField>CancelRequestPending</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="CancelRequestDate">
-          <DataField>CancelRequestDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="CenterCode">
           <DataField>CenterCode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Relationship">
-          <DataField>Relationship</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="FirstName">
-          <DataField>FirstName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="LastName">
-          <DataField>LastName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Age">
-          <DataField>Age</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Street">
-          <DataField>Street</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="City">
-          <DataField>City</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="State">
-          <DataField>State</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Zip">
-          <DataField>Zip</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="HomePhone">
-          <DataField>HomePhone</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="WorkPhone">
-          <DataField>WorkPhone</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="CellPhone">
-          <DataField>CellPhone</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Email">
-          <DataField>Email</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Child1FirstName">
-          <DataField>Child1FirstName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Child1LastName">
-          <DataField>Child1LastName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Child1DOB">
-          <DataField>Child1DOB</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
         <Field Name="Child1Classroom">
           <DataField>Child1Classroom</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Child2FirstName">
-          <DataField>Child2FirstName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Child2LastName">
-          <DataField>Child2LastName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Child2DOB">
-          <DataField>Child2DOB</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="Child2Classroom">
-          <DataField>Child2Classroom</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Child3FirstName">
-          <DataField>Child3FirstName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Child3LastName">
-          <DataField>Child3LastName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Child3DOB">
-          <DataField>Child3DOB</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="Child3Classroom">
-          <DataField>Child3Classroom</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Username">
-          <DataField>Username</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Password">
-          <DataField>Password</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Comments">
-          <DataField>Comments</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Diary">
-          <DataField>Diary</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="RcvTrialEmail">
-          <DataField>RcvTrialEmail</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="MidTrialEmailSent">
-          <DataField>MidTrialEmailSent</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="plusTrialStartDate">
-          <DataField>plusTrialStartDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="plusTrialEndDate">
-          <DataField>plusTrialEndDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="dateTrialEnd">
-          <DataField>dateTrialEnd</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -400,6 +255,150 @@
         </Field>
         <Field Name="SchoolID">
           <DataField>SchoolID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="DataSet_TimeCard">
+      <Query>
+        <DataSourceName>DataSource_COADB</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@AsOfDate">
+            <Value>=Parameters!AsOfDate.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>Select		
+	c.ID
+	,c.CenterCode
+	,c.CenterName
+	,c.CenterState	
+	,c.DistrictMgrEmail
+	,c.FrontDeskEmail
+	,c.CenterEmail
+	,c.DirectorName
+	,c.CenterPhoneNumber
+	,c.NotOpen
+	,c.BCCEmail
+	,cscc.TARGETTEACHERCHILDHRSPERC
+	,cscc.AVGDAILYTUITIONPERCHILD
+	,cscc.AVGDAILYTUITIONPERCHILDPRICEMATCH
+	,cscc.AVGHOURLYRATE
+	,csdc.EnrollmentNumber
+	,csdc.DateCode
+	,csae.TimeCardSummaryLessMgmtHrs
+	,csae.totalchildhours
+	,csae.TotalHrsPerCountSheet
+	,csae.PayrollPercentageStandard
+	,(
+		Select	SUM(kidsval)
+		From	CountSheetChart WITH (NOLOCK)
+		Where	CenterCode = c.CenterCode
+		AND		DateCode = csdc.DateCode
+		AND		TimeCode = 1300
+	) AS kidsval
+
+FROM		Centers c WITH (NOLOCK)
+
+LEFT JOIN	CountSheetCenterConfig cscc WITH (NOLOCK)--one-to-one
+ON			c.CenterCode = cscc.CenterCode
+
+LEFT JOIN	CountSheetDailyConfig csdc WITH (NOLOCK)--many-to-one
+ON			csdc.CenterCode = c.centerCode
+AND			csdc.DateCode IN (@AsOfDate)		  
+
+LEFT JOIN	CountSheetAnalystEOD csae WITH (NOLOCK)--many-to-one
+ON			csdc.CenterCode = csae.CenterCode
+AND			csae.DateCode = csdc.DateCode
+WHERE		[Status] = 'Open'
+AND			c.CenterCode &lt;&gt; 'acme'</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CenterCode">
+          <DataField>CenterCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CenterName">
+          <DataField>CenterName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CenterState">
+          <DataField>CenterState</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DistrictMgrEmail">
+          <DataField>DistrictMgrEmail</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FrontDeskEmail">
+          <DataField>FrontDeskEmail</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CenterEmail">
+          <DataField>CenterEmail</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DirectorName">
+          <DataField>DirectorName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CenterPhoneNumber">
+          <DataField>CenterPhoneNumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NotOpen">
+          <DataField>NotOpen</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="BCCEmail">
+          <DataField>BCCEmail</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TARGETTEACHERCHILDHRSPERC">
+          <DataField>TARGETTEACHERCHILDHRSPERC</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="AVGDAILYTUITIONPERCHILD">
+          <DataField>AVGDAILYTUITIONPERCHILD</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="AVGDAILYTUITIONPERCHILDPRICEMATCH">
+          <DataField>AVGDAILYTUITIONPERCHILDPRICEMATCH</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="AVGHOURLYRATE">
+          <DataField>AVGHOURLYRATE</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="EnrollmentNumber">
+          <DataField>EnrollmentNumber</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DateCode">
+          <DataField>DateCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TimeCardSummaryLessMgmtHrs">
+          <DataField>TimeCardSummaryLessMgmtHrs</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="totalchildhours">
+          <DataField>totalchildhours</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="TotalHrsPerCountSheet">
+          <DataField>TotalHrsPerCountSheet</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="PayrollPercentageStandard">
+          <DataField>PayrollPercentageStandard</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="kidsval">
+          <DataField>kidsval</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
