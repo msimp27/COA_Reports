@@ -189,6 +189,22 @@ from coadb.[dbo].[_ACBRegistration]</CommandText>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
+      <Filters>
+        <Filter>
+          <FilterExpression>=Fields!Enrollment_Status.Value</FilterExpression>
+          <Operator>Equal</Operator>
+          <FilterValues>
+            <FilterValue>Enrolled</FilterValue>
+          </FilterValues>
+        </Filter>
+        <Filter>
+          <FilterExpression>=Fields!School_ID.Value</FilterExpression>
+          <Operator>Equal</Operator>
+          <FilterValues>
+            <FilterValue DataType="Integer">46</FilterValue>
+          </FilterValues>
+        </Filter>
+      </Filters>
     </DataSet>
     <DataSet Name="DataSet_Unity_Enrollment_AddDrop">
       <Query>
@@ -946,7 +962,7 @@ where DateCode between @BeginDate and @EndDate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>= count(Fields!Classroom_ID.Value)</Value>
+                                  <Value>= sum(iif(instr(Fields!Primary_Classroom.Value,"Infant"),1,0))</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -978,7 +994,7 @@ where DateCode between @BeginDate and @EndDate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>= sum(iif(instr(Fields!Primary_Classroom.Value,"Toddler"),1,0))</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -1010,7 +1026,7 @@ where DateCode between @BeginDate and @EndDate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>= sum(iif(instr(Fields!Primary_Classroom.Value,"Two"),1,0))</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -1042,7 +1058,7 @@ where DateCode between @BeginDate and @EndDate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>= sum(iif(instr(Fields!Primary_Classroom.Value,"Pre-School"),1,0))</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -1074,7 +1090,7 @@ where DateCode between @BeginDate and @EndDate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>= sum(iif(instr(Fields!Primary_Classroom.Value,"Kindergarten"),1,0))</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -1106,7 +1122,7 @@ where DateCode between @BeginDate and @EndDate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>= sum(iif(instr(Fields!Primary_Classroom.Value,"Before"),1,0))</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -1138,7 +1154,7 @@ where DateCode between @BeginDate and @EndDate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>= sum(iif(instr(Fields!Primary_Classroom.Value,"Camp"),1,0))</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -1170,7 +1186,7 @@ where DateCode between @BeginDate and @EndDate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=lookup(Fields!School_ID.Value,Fields!SchoolID.Value,Fields!NetEnrolls.Value,"DataSet_Unity_Enrollment_AddDrop")</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -1395,7 +1411,7 @@ where DateCode between @BeginDate and @EndDate</CommandText>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!School_ID.Value</Value>
+                      <Value>=Fields!School_Name.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
