@@ -54,6 +54,7 @@
     <DataSet Include="DataSet_Date_Range.rsd" />
     <DataSet Include="DataSet_Date_Selected.rsd" />
     <DataSet Include="DataSet_Executive_Directors.rsd" />
+    <DataSet Include="DataSet_GL_Account.rsd" />
     <DataSet Include="DataSet_Unity_Campus_Default.rsd" />
     <DataSet Include="DataSet_Unity_Campus_Range.rsd" />
     <DataSet Include="DataSet_Unity_State_Default.rsd" />
@@ -62,6 +63,7 @@
   <ItemGroup>
     <DataSource Include="DS_ChildCare.rds" />
     <DataSource Include="DS_COADB.rds" />
+    <DataSource Include="DS_MAS_000.rds" />
     <DataSource Include="DS_Procare.rds" />
     <DataSource Include="DS_Unity.rds" />
   </ItemGroup>

@@ -59,6 +59,15 @@ from coadb.[dbo].[_ACBRegistration]</CommandText>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
+      <Filters>
+        <Filter>
+          <FilterExpression>=Fields!Status.Value</FilterExpression>
+          <Operator>Equal</Operator>
+          <FilterValues>
+            <FilterValue>active</FilterValue>
+          </FilterValues>
+        </Filter>
+      </Filters>
     </DataSet>
     <DataSet Name="DataSet_Procare_Classroom_Composition">
       <Query>
@@ -340,11 +349,64 @@ where DateCode between @BeginDate and @EndDate</CommandText>
         </Field>
       </Fields>
     </DataSet>
-    <DataSet Name="DataSet_Sage_GL_Data">
-      <Query>
-        <DataSourceName>DataSource_COADB</DataSourceName>
-        <CommandText>select 1</CommandText>
-      </Query>
+    <DataSet Name="DataSet_GL_Account">
+      <SharedDataSet>
+        <SharedDataSetReference>DataSet_GL_Account</SharedDataSetReference>
+      </SharedDataSet>
+      <Fields>
+        <Field Name="AccountDesc">
+          <DataField>AccountDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Account">
+          <DataField>Account</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RawAccount">
+          <DataField>RawAccount</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MainAccountCode">
+          <DataField>MainAccountCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Status">
+          <DataField>Status</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ClearBalance">
+          <DataField>ClearBalance</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccountType">
+          <DataField>AccountType</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CashFlowsType">
+          <DataField>CashFlowsType</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccountGroup">
+          <DataField>AccountGroup</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccountCategory">
+          <DataField>AccountCategory</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CompanyCode">
+          <DataField>CompanyCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DateCreated">
+          <DataField>DateCreated</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="DateUpdated">
+          <DataField>DateUpdated</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+      </Fields>
     </DataSet>
     <DataSet Name="DataSet_Campus">
       <SharedDataSet>
@@ -1218,7 +1280,7 @@ where DateCode between @BeginDate and @EndDate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=lookup(Fields!School_ID.Value,Fields!SchoolID.Value,Fields!NetEnrolls.Value,"DataSet_Unity_Enrollment_AddDrop")</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -1250,7 +1312,7 @@ where DateCode between @BeginDate and @EndDate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=count(lookup(Fields!School_Name.value,Fields!CenterCode.Value,Fields!ID.Value,"DataSet_ACB_Registration"))</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -1282,7 +1344,7 @@ where DateCode between @BeginDate and @EndDate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=sum(lookup(Fields!School_Name.value,Fields!CenterCode.Value,Fields!TotalTeacherHours.Value,"DataSet_TimeCard"))</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -1314,7 +1376,7 @@ where DateCode between @BeginDate and @EndDate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=sum(lookup(Fields!School_Name.value,Fields!CenterCode.Value,Fields!TotalChildHours.Value,"DataSet_TimeCard"))</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -1899,7 +1961,7 @@ where DateCode between @BeginDate and @EndDate</CommandText>
                 <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>DataSet_Sage_GL_Data</DataSetName>
+            <DataSetName>DataSet_GL_Account</DataSetName>
             <Top>1.60985in</Top>
             <Left>0.01701in</Left>
             <Height>0.5in</Height>

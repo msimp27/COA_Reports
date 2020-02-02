@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="DS_MAS_000">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=SERVER2016;Initial Catalog=MAS_000</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>6ffeffdb-598b-4458-96eb-ff95ec17559a</DataSourceID>
+</RptDataSource>
