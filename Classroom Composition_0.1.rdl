@@ -22,15 +22,14 @@
     <DataSet Name="DataSet_ACB_Registration">
       <Query>
         <DataSourceName>DataSource_COADB</DataSourceName>
-        <CommandText>
-select 
+        <CommandText>Select 
 	ID
 	,EntryDate
 	,[Status] 
 	,BillingActive
 	,CenterCode
 	,Child1Classroom	
-from coadb.[dbo].[_ACBRegistration]</CommandText>
+From coadb.[dbo].[_ACBRegistration]</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
@@ -71,7 +70,7 @@ from coadb.[dbo].[_ACBRegistration]</CommandText>
     </DataSet>
     <DataSet Name="DataSet_Procare_Classroom_Composition">
       <Query>
-        <DataSourceName>DataSource_Procare</DataSourceName>
+        <DataSourceName>DataSource_Unity</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@ProcareUserID">
             <Value>=Parameters!ProcareUserID.Value</Value>
@@ -81,10 +80,14 @@ from coadb.[dbo].[_ACBRegistration]</CommandText>
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>RD_ChildUserDefined_Corp</CommandText>
+        <CommandText>GI_SP_RPT_CLASSROOM_COMPOSITION</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
+        <Field Name="LocationID">
+          <DataField>LocationID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="Region_Code">
           <DataField>Region Code</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -283,6 +286,10 @@ from coadb.[dbo].[_ACBRegistration]</CommandText>
           <DataField>SchoolID</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="FTEAvg">
+          <DataField>FTEAvg</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="DataSet_TimeCard">
@@ -296,9 +303,8 @@ from coadb.[dbo].[_ACBRegistration]</CommandText>
             <Value>=Parameters!EndDate.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>
-select 
-	id
+        <CommandText>Select 
+	Id
 	,CenterCode
 	,DateCode
 	,TotalTeacherHours
@@ -307,12 +313,12 @@ select
 	,TimeCardSummaryLessMgmtHrs
 	,TotalHrsTimeCardLessMgmt
 	,TotalHrsPerCountSheet
-from CountSheetAnalystEOD 
-where DateCode between @BeginDate and @EndDate</CommandText>
+From CountSheetAnalystEOD 
+Where DateCode between @BeginDate and @EndDate</CommandText>
       </Query>
       <Fields>
         <Field Name="id">
-          <DataField>id</DataField>
+          <DataField>Id</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="CenterCode">
@@ -1344,7 +1350,7 @@ where DateCode between @BeginDate and @EndDate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=sum(lookup(Fields!School_Name.value,Fields!CenterCode.Value,Fields!TotalTeacherHours.Value,"DataSet_TimeCard"))</Value>
+                                  <Value>=sum(lookup(Fields!School_Code,Fields!CenterCode.Value,Fields!TotalTeacherHours.Value,"DataSet_TimeCard"))</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -1984,7 +1990,7 @@ where DateCode between @BeginDate and @EndDate</CommandText>
           </Border>
         </Style>
       </Body>
-      <Width>16.44995in</Width>
+      <Width>15.49162in</Width>
       <Page>
         <PageHeader>
           <Height>1.22223in</Height>

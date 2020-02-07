@@ -4,22 +4,20 @@
     <Query>
       <DataSourceReference>DS_MAS_000</DataSourceReference>
       <CommandText>SELECT 
-      
-	   [AccountDesc]
+       [AccountDesc]
       ,[Account]
       ,[RawAccount]
       ,[MainAccountCode]
       ,[Status]
-	  ,[ClearBalance]
+      ,[ClearBalance]
       ,[AccountType]
-	  ,[CashFlowsType]
+      ,[CashFlowsType]
       ,[AccountGroup]
       ,[AccountCategory]
       ,[CompanyCode]
       ,[DateCreated]
       ,[DateUpdated]
-	  
-  FROM [MAS_000].[dbo].[GL_Account] </CommandText>
+FROM [MAS_000].[dbo].[GL_Account] </CommandText>
     </Query>
     <Fields>
       <Field Name="AccountDesc">
