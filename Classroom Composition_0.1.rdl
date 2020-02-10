@@ -23,18 +23,24 @@
       <Query>
         <DataSourceName>DataSource_COADB</DataSourceName>
         <CommandText>Select 
-	ID
-	,EntryDate
-	,[Status] 
-	,BillingActive
-	,CenterCode
-	,Child1Classroom	
-From coadb.[dbo].[_ACBRegistration]</CommandText>
+	a.ID
+	,l.LocationID
+	,a.EntryDate
+	,a.[Status] 
+	,a.BillingActive
+	,a.CenterCode
+	,a.Child1Classroom	
+From coadb.[dbo].[_ACBRegistration] a
+	inner join SERVER2016.Childcare.dbo.locations l on a.CenterCode = l.CenterCode</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
         <Field Name="ID">
           <DataField>ID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="LocationID">
+          <DataField>LocationID</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="EntryDate">
@@ -297,28 +303,34 @@ From coadb.[dbo].[_ACBRegistration]</CommandText>
         <DataSourceName>DataSource_COADB</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@BeginDate">
-            <Value>=Parameters!BeginDate.Value</Value>
+            <Value>=Format(cdate(Parameters!BeginDate.Value),"yyyymmdd")</Value>
           </QueryParameter>
           <QueryParameter Name="@EndDate">
-            <Value>=Parameters!EndDate.Value</Value>
+            <Value>=Format(cdate(Parameters!EndDate.Value),"yyyymmdd")</Value>
           </QueryParameter>
         </QueryParameters>
         <CommandText>Select 
-	Id
-	,CenterCode
-	,DateCode
-	,TotalTeacherHours
-	,TotalChildHours
-	,AAClassHrs
-	,TimeCardSummaryLessMgmtHrs
-	,TotalHrsTimeCardLessMgmt
-	,TotalHrsPerCountSheet
-From CountSheetAnalystEOD 
+	c.Id
+	,l.LocationID
+	,c.CenterCode
+	,c.DateCode
+	,c.TotalTeacherHours
+	,c.TotalChildHours
+	,c.AAClassHrs
+	,c.TimeCardSummaryLessMgmtHrs
+	,c.TotalHrsTimeCardLessMgmt
+	,c.TotalHrsPerCountSheet
+From coadb.dbo.CountSheetAnalystEOD c 
+	inner join SERVER2016.Childcare.dbo.locations l on c.CenterCode = l.CenterCode
 Where DateCode between @BeginDate and @EndDate</CommandText>
       </Query>
       <Fields>
         <Field Name="id">
           <DataField>Id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="LocationID">
+          <DataField>LocationID</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="CenterCode">
@@ -1318,7 +1330,7 @@ Where DateCode between @BeginDate and @EndDate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=count(lookup(Fields!School_Name.value,Fields!CenterCode.Value,Fields!ID.Value,"DataSet_ACB_Registration"))</Value>
+                                  <Value>=count(lookup(Fields!LocationID.Value,Fields!LocationID.Value,Fields!ID.Value,"DataSet_ACB_Registration"))</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -1350,7 +1362,7 @@ Where DateCode between @BeginDate and @EndDate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=sum(lookup(Fields!School_Code,Fields!CenterCode.Value,Fields!TotalTeacherHours.Value,"DataSet_TimeCard"))</Value>
+                                  <Value>=sum(lookup(Fields!LocationID.Value,Fields!LocationID.Value,Fields!TotalTeacherHours.Value,"DataSet_TimeCard"))</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
@@ -1382,7 +1394,7 @@ Where DateCode between @BeginDate and @EndDate</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=sum(lookup(Fields!School_Name.value,Fields!CenterCode.Value,Fields!TotalChildHours.Value,"DataSet_TimeCard"))</Value>
+                                  <Value>=sum(lookup(Fields!LocationID.value,Fields!LocationID.Value,Fields!TotalChildHours.Value,"DataSet_TimeCard"))</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
                                   </Style>
